@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script/controller/CheckGameOver.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script/controller/CheckGameOver.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>gameOver = false;
+/**
+ * @function
+ * @name CheckGameOver()
+ * Displays GameOver screen
+ */
+function CheckGameOver() {
+  zombiesArray.forEach((zombie) => {
+    if (zombie.x + zombie.width > CANVAS_WIDTH) {
+      container.style.cursor = "crosshair";
+      gameOver = true;
+      console.log("Game over!");
+      instructionsText.style.display = "none";
+      navig.style.display = "none";
+      MainMenuLink.style.display = "block";
+      NadpisMenu.style.display = "block";
+      gameovertext.style.display = "block";
+      canvas.style.display = "none";
+      document.body.style.backgroundImage = "url('img/screen2.png')";
+      gameovertext.innerHTML += "You lost !&lt;br>";
+      gameovertext.innerHTML += "&lt;br>";
+      gameovertext.innerHTML += "Zombies killed : ";
+      gameovertext.innerHTML += NumberOfKills;
+      gameovertext.innerHTML += "&lt;br>Round : ";
+      gameovertext.innerHTML += RoundCounter;
+      RestartGame();
+    }
+  });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ClickObserver.html">ClickObserver</a></li><li><a href="GameGui.html">GameGui</a></li><li><a href="JumpZombie.html">JumpZombie</a></li><li><a href="ShieldZombie.html">ShieldZombie</a></li><li><a href="SmokeZombie.html">SmokeZombie</a></li><li><a href="TeleportZombie.html">TeleportZombie</a></li><li><a href="Zombie.html">Zombie</a></li><li><a href="global.html#knife">knife</a></li><li><a href="global.html#rifle">rifle</a></li><li><a href="global.html#shotgun">shotgun</a></li><li><a href="smoke.html">smoke</a></li><li><a href="global.html#sniper">sniper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CANVAS_HEIGHT">CANVAS_HEIGHT</a></li><li><a href="global.html#CANVAS_WIDTH">CANVAS_WIDTH</a></li><li><a href="global.html#CheckAbleToShoot">CheckAbleToShoot</a></li><li><a href="global.html#CheckAbleToShoot()checkswhethertheweaponcanfireagain">CheckAbleToShoot()checks whether the weapon can fire again</a></li><li><a href="global.html#CheckCollision">CheckCollision</a></li><li><a href="global.html#CheckGameOver">CheckGameOver</a></li><li><a href="global.html#CheckGameOver()DisplaysGameOverscreen">CheckGameOver()Displays GameOver screen</a></li><li><a href="global.html#CheckNewRound">CheckNewRound</a></li><li><a href="global.html#CheckNewRound()Checksifthecurrentroundhasendedandspawnsanewwaveofzombiesaccordingly.Iftherearenomorezombiesandthecurrentroundis1,spawnswave2.Iftherearenomorezombiesandthecurrentroundis2,spawnswave3.Iftherearenomorezombiesandthecurrentroundis3,spawnswave4.Iftherearenomorezombiesandthecurrentroundis4,spawnswave5.Iftherearenomorezombiesandthecurrentroundis5,spawnswave6.Iftherearenomorezombiesandthecurrentroundis6,spawnswave7.Iftherearenomorezombiesandthecurrentroundis7,spawnswave8.Iftherearenomorezombiesandthecurrentroundis8,spawnswave9.">CheckNewRound()
+Checks if the current round has ended and spawns a new wave of zombies accordingly.
+If there are no more zombies and the current round is 1, spawns wave 2.
+If there are no more zombies and the current round is 2, spawns wave 3.
+If there are no more zombies and the current round is 3, spawns wave 4.
+If there are no more zombies and the current round is 4, spawns wave 5.
+If there are no more zombies and the current round is 5, spawns wave 6.
+If there are no more zombies and the current round is 6, spawns wave 7.
+If there are no more zombies and the current round is 7, spawns wave 8.
+If there are no more zombies and the current round is 8, spawns wave 9.</a></li><li><a href="global.html#DeftextBeforeDeletion">DeftextBeforeDeletion</a></li><li><a href="global.html#GameLoop">GameLoop</a></li><li><a href="global.html#MainMenuLink">MainMenuLink</a></li><li><a href="global.html#NadpisMenu">NadpisMenu</a></li><li><a href="global.html#NumberOfKills">NumberOfKills</a></li><li><a href="global.html#RestartGame">RestartGame</a></li><li><a href="global.html#RestartGame()restartsthegame">RestartGame()
+restarts the game</a></li><li><a href="global.html#RoundCounter">RoundCounter</a></li><li><a href="global.html#ShootAgain">ShootAgain</a></li><li><a href="global.html#SmokesArray">SmokesArray</a></li><li><a href="global.html#SpawnWave1">SpawnWave1</a></li><li><a href="global.html#SpawnWave2">SpawnWave2</a></li><li><a href="global.html#SpawnWave3">SpawnWave3</a></li><li><a href="global.html#SpawnWave4">SpawnWave4</a></li><li><a href="global.html#SpawnWave5">SpawnWave5</a></li><li><a href="global.html#SpawnWave6">SpawnWave6</a></li><li><a href="global.html#SpawnWave7">SpawnWave7</a></li><li><a href="global.html#SpawnWave8">SpawnWave8</a></li><li><a href="global.html#SpawnWave9">SpawnWave9</a></li><li><a href="global.html#WonGame">WonGame</a></li><li><a href="global.html#WonGame()Displayswinscreen">WonGame()Displays win screen</a></li><li><a href="global.html#WonGameTrueFalse">WonGameTrueFalse</a></li><li><a href="global.html#audio">audio</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#container">container</a></li><li><a href="global.html#ctx">ctx</a></li><li><a href="global.html#drawAll">drawAll</a></li><li><a href="global.html#frameCounter">frameCounter</a></li><li><a href="global.html#gameOver">gameOver</a></li><li><a href="global.html#gameovertext">gameovertext</a></li><li><a href="global.html#gamepause">gamepause</a></li><li><a href="global.html#gui">gui</a></li><li><a href="global.html#i">i</a></li><li><a href="global.html#instructionsLink">instructionsLink</a></li><li><a href="global.html#instructionsText">instructionsText</a></li><li><a href="global.html#navig">navig</a></li><li><a href="global.html#observer">observer</a></li><li><a href="global.html#optionsLink">optionsLink</a></li><li><a href="global.html#paused">paused</a></li><li><a href="global.html#play">play</a></li><li><a href="global.html#play()PlaysorpausestheaudioelementwithID%2522audio%2522andupdatesthetextcontentofabuttonwithID%2522playbutton%2522">play()
+Plays or pauses the audio element with ID "audio" and updates the text content of a button with ID "playbutton"</a></li><li><a href="global.html#playLink">playLink</a></li><li><a href="global.html#reload">reload</a></li><li><a href="global.html#reload()resetsbullets">reload()resets bullets</a></li><li><a href="global.html#reloadSound">reloadSound</a></li><li><a href="global.html#shot">shot</a></li><li><a href="global.html#smokeX">smokeX</a></li><li><a href="global.html#smokeY">smokeY</a></li><li><a href="global.html#updateAll">updateAll</a></li><li><a href="global.html#volumeSlider">volumeSlider</a></li><li><a href="global.html#volumeSliderText">volumeSliderText</a></li><li><a href="global.html#zombiesArray">zombiesArray</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 20:29:12 GMT+0200 (stredoeurópsky letný čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

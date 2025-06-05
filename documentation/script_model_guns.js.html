@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script/model/guns.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script/model/guns.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+
+Represents a rifle in the game.
+
+@class
+
+@constructor
+
+@name rifle
+
+@property {number} damage - The damage dealt by the rifle.
+
+@property {number} AbleToShoot - The ability of the rifle to shoot.
+
+@property {number} delay - The delay time for the rifle to shoot again.
+
+@property {Audio} audio - The sound played when the rifle is shot.
+
+@property {Audio} audio2 - The sound played when there are no bullets left in the rifle.
+
+@property {number} MainCursorBullets - The maximum number of bullets the rifle can hold.
+
+@property {number} cursorBullets - The current number of bullets the rifle has.
+
+@property {Image} cursorImage - The image of the cursor used when aiming with the rifle.
+
+@property {number} CursorSize - The size of the cursor image.
+
+@property {number} cursorWidth - The width of the cursor image.
+
+@property {number} cursorHeight - The height of the cursor image.
+
+@property {number} x - The x-coordinate of the rifle's position on the canvas.
+
+@property {number} y - The y-coordinate of the rifle's position on the canvas.
+
+@draw
+
+draws object
+
+@special
+
+special function
+*/
+
+class rifle {
+  constructor() {
+    this.damage = 1;
+    this.AbleToShoot = 1;
+    this.delay = 80;
+    this.audio = new Audio("music/RifleShot.mp3");
+    this.audio2 = new Audio("music/NoBullets.mp3");
+    this.MainCursorBullets = 3;
+    this.cursorBullets = 3;
+    this.cursorImage = new Image();
+    this.cursorImage.src = "img/crossRifle.png";
+    this.CursorSize = 3;
+    this.cursorWidth = 150 / this.CursorSize; // Width of the cursor image
+    this.cursorHeight = 150 / this.CursorSize; // Height of the cursor image
+
+    // Attach event listener to track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      this.x = e.clientX - this.cursorWidth / 2;
+      this.y = e.clientY - this.cursorHeight / 2;
+    });
+  }
+  /**
+
+  Draws the cursor image at the current mouse position on the canvas.
+  @method
+  */
+  draw() {
+    // Draw the cursor image at the current mouse position
+    ctx.drawImage(
+      this.cursorImage,
+      this.x - 100 / this.CursorSize,
+      this.y - 100 / this.CursorSize,
+      this.cursorWidth + 100 / this.CursorSize,
+      this.cursorHeight + 100 / this.CursorSize //50 + 200/3
+    );
+  }
+  /**
+
+  Reloads the rifle, setting the current number of bullets to the maximum.
+  @method
+  */
+  special() {
+    this.cursorBullets = this.MainCursorBullets;
+  }
+}
+/**
+
+Represents a shotgun in the game.
+
+@class
+
+@constructor
+
+@name shotgun
+
+@property {number} damage - The damage dealt by the shotgun.
+
+@property {number} AbleToShoot - The ability of the shotgun to shoot.
+
+@property {number} delay - The delay time for the shotgun to shoot again.
+
+@property {Audio} audio - The sound played when the shotgun is shot.
+
+@property {Audio} audio2 - The sound played when there are no bullets left in the shotgun.
+
+@property {number} MainCursorBullets - The maximum number of bullets the shotgun can hold.
+
+@property {number} cursorBullets - The current number of bullets the shotgun has.
+
+@property {Image} cursorImage - The image of the cursor used when aiming with the shotgun.
+
+@property {number} CursorSize - The size of the cursor image.
+
+@property {number} cursorWidth - The width of the cursor image.
+
+@property {number} cursorHeight - The height of the cursor image.
+
+@property {number} x - The x-coordinate of the shotgun's position on the canvas.
+
+@property {number} y - The y-coordinate of the shotgun's position on the canvas.
+
+@draw
+
+draws object
+
+@special
+
+special function
+*/
+class shotgun {
+  constructor() {
+    this.damage = 1;
+    this.AbleToShoot = 1;
+    this.delay = 60;
+    this.audio = new Audio("music/ShotgunShot.mp3");
+    this.audio2 = new Audio("music/NoBullets.mp3");
+    this.MainCursorBullets = 5;
+    this.cursorBullets = 5;
+    this.cursorImage = new Image();
+    this.cursorImage.src = "img/crossShotgun.png";
+    this.CursorSize = 1;
+    this.cursorWidth = 150 / this.CursorSize; // Width of the cursor image
+    this.cursorHeight = 150 / this.CursorSize; // Height of the cursor image
+
+    // Attach event listener to track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      this.x = e.clientX - this.cursorWidth / 2;
+      this.y = e.clientY - this.cursorHeight / 2;
+    });
+  }
+
+  draw() {
+    // Draw the cursor image at the current mouse position
+    ctx.drawImage(
+      this.cursorImage,
+      this.x - 100 / this.CursorSize,
+      this.y - 100 / this.CursorSize,
+      this.cursorWidth + 100 / this.CursorSize,
+      this.cursorHeight + 100 / this.CursorSize //50 + 200/3
+    );
+  }
+  special() {
+    if (this.cursorBullets == 1) {
+      this.damage = 10;
+    } else {
+      this.damage = 1;
+    }
+  }
+}
+/**
+
+Represents a sniper in the game.
+
+@class
+
+@constructor
+
+@name sniper
+
+@property {number} damage - The damage dealt by the sniper.
+
+@property {number} AbleToShoot - The ability of the sniper to shoot.
+
+@property {number} delay - The delay time for the sniper to shoot again.
+
+@property {Audio} audio - The sound played when the sniper is shot.
+
+@property {Audio} audio2 - The sound played when there are no bullets left in the sniper.
+
+@property {number} MainCursorBullets - The maximum number of bullets the sniper can hold.
+
+@property {number} cursorBullets - The current number of bullets the sniper has.
+
+@property {Image} cursorImage - The image of the cursor used when aiming with the sniper.
+
+@property {number} CursorSize - The size of the cursor image.
+
+@property {number} cursorWidth - The width of the cursor image.
+
+@property {number} cursorHeight - The height of the cursor image.
+
+@property {number} x - The x-coordinate of the sniper's position on the canvas.
+
+@property {number} y - The y-coordinate of the sniper's position on the canvas.
+
+@draw
+
+draws object
+
+@special
+
+special function
+*/
+class sniper {
+  constructor() {
+    this.damage = 1;
+    this.AbleToShoot = 1;
+    this.delay = 240;
+    this.audio = new Audio("music/SniperShot.mp3");
+    this.audio2 = new Audio("music/NoBullets.mp3");
+    this.MainCursorBullets = 2;
+    this.cursorBullets = 2;
+    this.cursorImage = new Image();
+    this.cursorImage.src = "img/crossSniper.png";
+    this.CursorSize = 4;
+    this.cursorWidth = 150 / this.CursorSize; // Width of the cursor image
+    this.cursorHeight = 150 / this.CursorSize; // Height of the cursor image
+
+    // Attach event listener to track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      this.x = e.clientX - this.cursorWidth / 2;
+      this.y = e.clientY - this.cursorHeight / 2;
+    });
+  }
+
+  draw() {
+    // Draw the cursor image at the current mouse position
+    ctx.drawImage(
+      this.cursorImage,
+      this.x - 100 / this.CursorSize,
+      this.y - 100 / this.CursorSize,
+      this.cursorWidth + 100 / this.CursorSize,
+      this.cursorHeight + 100 / this.CursorSize //50 + 200/3
+    );
+  }
+}
+/**
+
+Represents a knife in the game.
+
+@class
+
+@constructor
+
+@name knife
+
+@property {number} damage - The damage dealt by the knife.
+
+@property {number} AbleToShoot - The ability of the knife to shoot.
+
+@property {number} delay - The delay time for the knife to shoot again.
+
+@property {Audio} audio - The sound played when the knife is shot.
+
+@property {Audio} audio2 - The sound played when there are no bullets left in the knife.
+
+@property {number} MainCursorBullets - The maximum number of bullets the knife can hold.
+
+@property {number} cursorBullets - The current number of bullets the knife has.
+
+@property {Image} cursorImage - The image of the cursor used when aiming with the knife.
+
+@property {number} CursorSize - The size of the cursor image.
+
+@property {number} cursorWidth - The width of the cursor image.
+
+@property {number} cursorHeight - The height of the cursor image.
+
+@property {number} x - The x-coordinate of the knife's position on the canvas.
+
+@property {number} y - The y-coordinate of the knife's position on the canvas.
+
+@draw
+
+draws object
+
+@special
+
+special function
+*/
+class knife {
+  constructor() {
+    this.damage = 10;
+    this.AbleToShoot = 1;
+    this.delay = 130;
+    this.audio = new Audio("music/KnifeShot.mp3");
+    this.audio2 = new Audio("music/NoBullets.mp3");
+    this.MainCursorBullets = 0;
+    this.cursorBullets = 2;
+    this.cursorImage = new Image();
+    this.cursorImage.src = "img/crossKnife.png";
+    this.CursorSize = 7;
+    this.cursorWidth = 150 / this.CursorSize; // Width of the cursor image
+    this.cursorHeight = 150 / this.CursorSize; // Height of the cursor image
+
+    // Attach event listener to track mouse movement
+    window.addEventListener("mousemove", (e) => {
+      this.x = e.clientX - this.cursorWidth / 2;
+      this.y = e.clientY - this.cursorHeight / 2;
+    });
+  }
+
+  draw() {
+    // Draw the cursor image at the current mouse position
+    ctx.drawImage(
+      this.cursorImage,
+      this.x - 100 / this.CursorSize,
+      this.y - 100 / this.CursorSize,
+      this.cursorWidth + 100 / this.CursorSize,
+      this.cursorHeight + 100 / this.CursorSize //50 + 200/3
+    );
+  }
+  special() {
+    WonGame();
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ClickObserver.html">ClickObserver</a></li><li><a href="GameGui.html">GameGui</a></li><li><a href="JumpZombie.html">JumpZombie</a></li><li><a href="ShieldZombie.html">ShieldZombie</a></li><li><a href="SmokeZombie.html">SmokeZombie</a></li><li><a href="TeleportZombie.html">TeleportZombie</a></li><li><a href="Zombie.html">Zombie</a></li><li><a href="global.html#knife">knife</a></li><li><a href="global.html#rifle">rifle</a></li><li><a href="global.html#shotgun">shotgun</a></li><li><a href="smoke.html">smoke</a></li><li><a href="global.html#sniper">sniper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CANVAS_HEIGHT">CANVAS_HEIGHT</a></li><li><a href="global.html#CANVAS_WIDTH">CANVAS_WIDTH</a></li><li><a href="global.html#CheckAbleToShoot">CheckAbleToShoot</a></li><li><a href="global.html#CheckAbleToShoot()checkswhethertheweaponcanfireagain">CheckAbleToShoot()checks whether the weapon can fire again</a></li><li><a href="global.html#CheckCollision">CheckCollision</a></li><li><a href="global.html#CheckGameOver">CheckGameOver</a></li><li><a href="global.html#CheckGameOver()DisplaysGameOverscreen">CheckGameOver()Displays GameOver screen</a></li><li><a href="global.html#CheckNewRound">CheckNewRound</a></li><li><a href="global.html#CheckNewRound()Checksifthecurrentroundhasendedandspawnsanewwaveofzombiesaccordingly.Iftherearenomorezombiesandthecurrentroundis1,spawnswave2.Iftherearenomorezombiesandthecurrentroundis2,spawnswave3.Iftherearenomorezombiesandthecurrentroundis3,spawnswave4.Iftherearenomorezombiesandthecurrentroundis4,spawnswave5.Iftherearenomorezombiesandthecurrentroundis5,spawnswave6.Iftherearenomorezombiesandthecurrentroundis6,spawnswave7.Iftherearenomorezombiesandthecurrentroundis7,spawnswave8.Iftherearenomorezombiesandthecurrentroundis8,spawnswave9.">CheckNewRound()
+Checks if the current round has ended and spawns a new wave of zombies accordingly.
+If there are no more zombies and the current round is 1, spawns wave 2.
+If there are no more zombies and the current round is 2, spawns wave 3.
+If there are no more zombies and the current round is 3, spawns wave 4.
+If there are no more zombies and the current round is 4, spawns wave 5.
+If there are no more zombies and the current round is 5, spawns wave 6.
+If there are no more zombies and the current round is 6, spawns wave 7.
+If there are no more zombies and the current round is 7, spawns wave 8.
+If there are no more zombies and the current round is 8, spawns wave 9.</a></li><li><a href="global.html#DeftextBeforeDeletion">DeftextBeforeDeletion</a></li><li><a href="global.html#GameLoop">GameLoop</a></li><li><a href="global.html#MainMenuLink">MainMenuLink</a></li><li><a href="global.html#NadpisMenu">NadpisMenu</a></li><li><a href="global.html#NumberOfKills">NumberOfKills</a></li><li><a href="global.html#RestartGame">RestartGame</a></li><li><a href="global.html#RestartGame()restartsthegame">RestartGame()
+restarts the game</a></li><li><a href="global.html#RoundCounter">RoundCounter</a></li><li><a href="global.html#ShootAgain">ShootAgain</a></li><li><a href="global.html#SmokesArray">SmokesArray</a></li><li><a href="global.html#SpawnWave1">SpawnWave1</a></li><li><a href="global.html#SpawnWave2">SpawnWave2</a></li><li><a href="global.html#SpawnWave3">SpawnWave3</a></li><li><a href="global.html#SpawnWave4">SpawnWave4</a></li><li><a href="global.html#SpawnWave5">SpawnWave5</a></li><li><a href="global.html#SpawnWave6">SpawnWave6</a></li><li><a href="global.html#SpawnWave7">SpawnWave7</a></li><li><a href="global.html#SpawnWave8">SpawnWave8</a></li><li><a href="global.html#SpawnWave9">SpawnWave9</a></li><li><a href="global.html#WonGame">WonGame</a></li><li><a href="global.html#WonGame()Displayswinscreen">WonGame()Displays win screen</a></li><li><a href="global.html#WonGameTrueFalse">WonGameTrueFalse</a></li><li><a href="global.html#audio">audio</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#container">container</a></li><li><a href="global.html#ctx">ctx</a></li><li><a href="global.html#drawAll">drawAll</a></li><li><a href="global.html#frameCounter">frameCounter</a></li><li><a href="global.html#gameOver">gameOver</a></li><li><a href="global.html#gameovertext">gameovertext</a></li><li><a href="global.html#gamepause">gamepause</a></li><li><a href="global.html#gui">gui</a></li><li><a href="global.html#i">i</a></li><li><a href="global.html#instructionsLink">instructionsLink</a></li><li><a href="global.html#instructionsText">instructionsText</a></li><li><a href="global.html#navig">navig</a></li><li><a href="global.html#observer">observer</a></li><li><a href="global.html#optionsLink">optionsLink</a></li><li><a href="global.html#paused">paused</a></li><li><a href="global.html#play">play</a></li><li><a href="global.html#play()PlaysorpausestheaudioelementwithID%2522audio%2522andupdatesthetextcontentofabuttonwithID%2522playbutton%2522">play()
+Plays or pauses the audio element with ID "audio" and updates the text content of a button with ID "playbutton"</a></li><li><a href="global.html#playLink">playLink</a></li><li><a href="global.html#reload">reload</a></li><li><a href="global.html#reload()resetsbullets">reload()resets bullets</a></li><li><a href="global.html#reloadSound">reloadSound</a></li><li><a href="global.html#shot">shot</a></li><li><a href="global.html#smokeX">smokeX</a></li><li><a href="global.html#smokeY">smokeY</a></li><li><a href="global.html#updateAll">updateAll</a></li><li><a href="global.html#volumeSlider">volumeSlider</a></li><li><a href="global.html#volumeSliderText">volumeSliderText</a></li><li><a href="global.html#zombiesArray">zombiesArray</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun May 07 2023 20:29:12 GMT+0200 (stredoeurópsky letný čas)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
