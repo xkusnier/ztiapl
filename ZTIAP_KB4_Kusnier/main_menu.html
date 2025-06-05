@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zombie Game Menu</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" defer></script>
+	<script src="/script/view/clickingButtonsOnMenu.js" defer></script>
+	<script src="/script/model/canvas.js" defer></script>
+	<script src="/script/model/GameGui.js" defer></script>
+	<script src="/script/model/guns.js" defer></script>
+	<script src="/script/model/smoke.js" defer></script>
+	<script src="/script/model/zombies.js" defer></script>
+
+	<script src="/script/controller/CheckCollision.js" defer></script>
+	<script src="/script/controller/CheckGameOver.js" defer></script>
+	<script src="/script/controller/CheckNewRound.js" defer></script>
+	<script src="/script/controller/PauseGame.js" defer></script>
+	<script src="/script/controller/PlayAudioBackround.js" defer></script>
+	<script src="/script/controller/restartgame.js" defer></script>
+	<script src="/script/controller/Shooting.js" defer></script>
+	<script src="/script/controller/ShotOnClickObserver.js" defer></script>
+	<script src="/script/controller/SpawningZombies.js" defer></script>
+	<script src="/script/controller/UpdateAll.js" defer></script>
+	<script src="/script/controller/wonGame.js" defer></script>
+
+
+	<script src="/script/view/DrawAll.js" defer></script>
+</head>
+<body>
+	
+	<div id="my-element"></div>
+	<input type="button" value="Play music" class="playbutton" id="playbutton" onclick="play()">
+	<audio id="audio" src="music/music.mp3" loop></audio>
+
+	<div class="container">
+		<canvas id="canvas1" style="display:none"></canvas>
+		<h1 id="NadpisMenu">Zombie Game</h1>
+			<nav id="navig">
+				<ul>
+				   <li><a href="#" id="play">Play</a></li>
+				   <li><a href="#" id="options">Options</a></li>
+				   <li><a href="#" id="instructions">Instructions</a></li>
+				</ul>
+			</nav>
+
+			<div id="instructions-text" style="display:none">
+				<p> The zombies will come from the
+					left side to try to get to the house. At the moment, when one of the zombies passes through the
+					whole map, and will reach the house, the player lost. The aim of the game is to shoot all
+					zombies.The player wins if he hits the zombie with the knife. The player gets the knife in the last round.<br>
+					<br>
+					Each of the weapons has a special feature:<br>
+					1. shotgun - the last charge kills oneshot<br>
+					2. Assault Rifle - after killing a zombie, the bullets are added<br>
+					3. Sniper Rifle <br>
+					4. Knife - Only 1 Throw - When hitting the zombie, you win the game <br>
+					<br>
+					The weapons differ in the number of charge, the length of the overflow and the intervention area.
+					By reaching the level, the player gets new weapons, the difficulty of the game - the speed and number of zombies increases<br>
+					<br>Zombies have special abilities to avoid charge:<br>
+					1. Smoke Zombie - creates a smoke, killing him can be estimated by its location in the smoke<br>
+					2. Jumping Zombie - after the Crosshair's direction jumps<br>
+					3. Crawling Zombie - after aiming the crosshair begins to crawl<br>
+					4. Temport Zombie - Teleporting with Ana random place<br>
+					5. Shield Zombie - for a certain period of time has a shield through which it is impossible to shoot<br></p>
+					
+			</div>
+
+			<div id = "gameover-text" style="display:none">
+				<p>
+
+
+				</p>
+			</div>
+			<div id="volumeSliderText" style="display:none"><p>Volume</p></div>
+			<input type="range" id="volumeSlider" style="display:none" min="0" max="1" step="0.01" value="0.5">
+			<p href="#" class = "buttonMainMenu" style="display:none" id="MainMenu" style="top:10%" style="left : 10%">Main menu</p>	
+			
+
+
+    </div>
+
+</body>
+	
